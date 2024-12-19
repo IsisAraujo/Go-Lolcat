@@ -1,105 +1,75 @@
 # 🌈 go-lolcat
 
-[![Go Version](https://img.shields.io/github/go-mod/go-version/seu-usuario/go-lolcat)](https://go.dev/)
-[![License](https://img.shields.io/github/license/seu-usuario/go-lolcat)](LICENSE)
-[![Go Report Card](https://goreportcard.com/badge/github.com/seu-usuario/go-lolcat)](https://goreportcard.com/report/github.com/seu-usuario/go-lolcat)
+[![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://go.dev/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-Um clone colorido e moderno do clássico lolcat implementado em Go. Transforme sua saída de terminal em um arco-íris vibrante! 🎨
 
-![Demo do go-lolcat](./docs/assets/demo.gif)
+Um coloridor de texto dinâmico implementado em Go que transforma saídas do terminal em um visual de arco-íris! 🎨
 
-## 🚀 Características
+![Demonstração do efeito RGB](image.png)
 
-- Coloração em arco-íris de texto no terminal
-- Suporte a pipe de entrada (STDIN)
-- Personalização de cores e animações
-- Alta performance e baixo consumo de memória
-- Cross-platform (Windows, Linux, macOS)
+## 🎯 Sobre o Projeto
+
+Este projeto foi desenvolvido como parte do meu aprendizado em Go, focando em:
+- Manipulação de entrada/saída de terminal
+- Processamento de texto em tempo real
+- Uso de pipes e streams em Go
+- Matemática aplicada para geração de cores (funções trigonométricas)
+
+## ✨ Funcionalidades
+
+- 🌈 **Coloração Dinâmica**: Utiliza funções trigonométricas para gerar um gradiente de cores suave
+- 📊 **Processamento em Tempo Real**: Processa e colore cada caractere instantaneamente
+- 🔄 **Suporte a Pipe**: Integração perfeita com outros comandos Unix através de pipes
+- 🚀 **Alta Performance**: Processamento eficiente sem armazenamento em buffer
+- 💻 **Cross-Platform**: Funciona em Windows, Linux e macOS
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Go 1.21+**: Aproveitando as mais recentes funcionalidades da linguagem
+- **Packages nativos**:
+    - `bufio`: Leitura eficiente da entrada
+    - `math`: Cálculos para geração de cores
+    - `fmt`: Formatação e saída
+    - `os`: Interação com sistema operacional
 
 ## 📋 Pré-requisitos
 
 - Go 1.21 ou superior
-- Terminal com suporte a cores ANSI
 
-## 🛠️ Instalação
 
+## 💻 Como Usar
+
+1. **Clone o repositório**
 ```bash
-go install github.com/seu-usuario/go-lolcat@latest
+git clone https://github.com/IsisAraujo/Go-Lolcat.git
+cd Go-Lolcat
 ```
 
-## 💡 Uso
-
-Uso básico:
+2. **Execute com texto simples**
 ```bash
-go-lolcat arquivo.txt
+echo "Hello, Colorful World!" | go run main.go
 ```
 
-Pipe com outros comandos:
+3**Combine com outros comandos**
 ```bash
-echo "Hello, Rainbow World!" | go-lolcat
+ls -l | go run main.go
 ```
 
-Opções disponíveis:
-```bash
-go-lolcat --help
+## 🔍 Código em Destaque
+
+O coração do projeto está na função que gera as cores RGB usando matemática:
+```go
+func rgb(i int) (int, int, int) {
+    var f = 0.1
+    return int(math.Sin(f*float64(i)+0)*127 + 128),
+        int(math.Sin(f*float64(i)+2*math.Pi/3)*127 + 128),
+        int(math.Sin(f*float64(i)+4*math.Pi/3)*127 + 128)
+}
 ```
 
-## 🧪 Testes
+## 📬 Contato
 
-```bash
-go test -v ./...
-```
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Por favor, leia nosso [Guia de Contribuição](CONTRIBUTING.md) antes de enviar um Pull Request.
-
-## 📝 Licença
-
-Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-## About
-
-### 💭 Motivação
-
-Este projeto foi criado como parte do meu aprendizado em Go, inspirado pelo [lolcat original](https://github.com/busyloop/lolcat). O objetivo é fornecer uma implementação moderna e eficiente em Go, aproveitando as características da linguagem como concorrência e gestão eficiente de memória.
-
-### 🎯 Objetivos do Projeto
-
-- Aprender e demonstrar boas práticas de programação em Go
-- Implementar um CLI moderno e eficiente
-- Explorar manipulação de cores em terminal
-- Praticar testes e documentação em Go
-
-### 🏗️ Arquitetura
-
-O projeto segue uma arquitetura limpa e modular:
-
-```
-go-lolcat/
-├── cmd/           # Ponto de entrada do CLI
-├── internal/      # Código interno do pacote
-│   ├── color/     # Lógica de coloração
-│   ├── input/     # Processamento de entrada
-│   └── render/    # Renderização do output
-├── pkg/           # Pacotes públicos reutilizáveis
-├── docs/          # Documentação
-└── test/         # Testes de integração
-```
-
-### 🛣️ Roadmap
-
-- [x] Implementação básica
-- [x] Suporte a pipes
-- [ ] Animações personalizáveis
-- [ ] Modo interativo
-- [ ] Suporte a Unicode
-- [ ] Otimizações de performance
-
-## 📚 Recursos Adicionais
-
-- [Documentação da API](docs/API.md)
-- [Guia de Desenvolvimento](docs/DEVELOPMENT.md)
-- [Notas de Release](CHANGELOG.md)
+Isis Araujo - [LinkedIn](https://www.linkedin.com/in/isisaraujo/) 
 
 ---
